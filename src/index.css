@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ensure the canvas background is visible behind content */
+html, body, #root {
+  height: 100%;
+  background-color: #000;
+}
+
+canvas { display: block; }
