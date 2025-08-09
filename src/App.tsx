@@ -44,7 +44,6 @@ function App() {
     window.addEventListener('resize', handleResize);
     window.addEventListener('orientationchange', handleResize);
 
-    // ensure layout is measured after splash removal
     const timer = window.setTimeout(() => AOS.refresh(), 50);
 
     return () => {
