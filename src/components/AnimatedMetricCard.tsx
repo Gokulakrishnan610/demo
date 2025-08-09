@@ -108,12 +108,12 @@ const AnimatedMetricCard: React.FC<AnimatedMetricCardProps> = ({
                          'rgba(99, 102, 241, 0.4)'}`
             }}
           >
-            <Icon className="w-7 h-7 text-white" />
+            <Icon className="w-7 h-7 text-brand-gold" />
           </motion.div>
           
           <div className="text-right">
             <motion.div 
-              className="text-3xl font-bold text-white mb-1"
+            className="text-3xl font-bold text-brand-gold mb-1"
               initial={{ opacity: 0, scale: 0.5 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: index * 0.1 + 0.2, duration: 0.5 }}
@@ -122,7 +122,7 @@ const AnimatedMetricCard: React.FC<AnimatedMetricCardProps> = ({
             </motion.div>
             {subtitle && (
               <motion.div 
-                className="text-sm text-white/70"
+              className="text-sm text-brand-gray"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ delay: index * 0.1 + 0.4 }}
@@ -134,7 +134,7 @@ const AnimatedMetricCard: React.FC<AnimatedMetricCardProps> = ({
         </div>
         
         <motion.h3 
-          className="text-xl font-bold text-white mb-2"
+          className="text-xl font-bold text-brand-gold mb-2"
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ delay: index * 0.1 + 0.3 }}
@@ -143,7 +143,7 @@ const AnimatedMetricCard: React.FC<AnimatedMetricCardProps> = ({
         </motion.h3>
         
         <motion.p 
-          className="text-white/70 mb-6 text-sm"
+          className="text-brand-gray mb-6 text-sm"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: index * 0.1 + 0.4 }}
@@ -152,7 +152,7 @@ const AnimatedMetricCard: React.FC<AnimatedMetricCardProps> = ({
         </motion.p>
         
         <div className="space-y-3">
-          <div className="flex justify-between text-sm text-white/80">
+          <div className="flex justify-between text-sm text-brand-gray">
             <span>Progress</span>
             <motion.span 
               className="font-bold"

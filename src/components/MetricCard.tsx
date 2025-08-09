@@ -37,10 +37,10 @@ const MetricCard: React.FC<MetricCardProps> = ({
       <div className="p-6">
         <div className="flex items-center justify-between mb-4">
           <div className={`p-3 rounded-xl ${color}`}>
-            <Icon className="w-6 h-6 text-white" />
+            <Icon className="w-6 h-6 text-brand-gold" />
           </div>
           <div className="text-right">
-            <div className="text-2xl font-bold text-gray-800">{value}</div>
+            <div className="text-2xl font-bold text-brand-gold">{value}</div>
             {subtitle && <div className="text-sm text-gray-500">{subtitle}</div>}
           </div>
         </div>

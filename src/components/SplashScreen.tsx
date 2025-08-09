@@ -24,7 +24,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ show, durationMs = 1000, on
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
           className="fixed inset-0 z-80 flex items-center justify-center bg-black"
         >
           {/* Subtle background glow */}
@@ -50,7 +50,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ show, durationMs = 1000, on
             draggable={false}
             initial={{ opacity: 0, scale: 0.9, filter: 'blur(6px)' }}
             animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-            transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+            transition={{ duration: 1.2, ease: [0.19, 1, 0.22, 1] }}
           />
 
           {/* Soft pulse ring */}
@@ -59,7 +59,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ show, durationMs = 1000, on
             style={{ width: 200, height: 200, borderRadius: '9999px', border: '1px solid rgba(255,255,255,0.12)' }}
             initial={{ opacity: 0.6, scale: 0.8 }}
             animate={{ opacity: 0, scale: 1.5 }}
-            transition={{ duration: 1.2, ease: 'easeOut', repeat: Infinity, repeatDelay: 0.2 }}
+            transition={{ duration: 1.6, ease: 'easeOut', repeat: Infinity, repeatDelay: 0.4 }}
           />
         </motion.div>
       )}

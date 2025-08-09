@@ -51,12 +51,12 @@ const BigFiveTimeline: React.FC<BigFiveTimelineProps> = ({ items, visibleCount }
                 <div className={`p-3 rounded-xl ${item.color}`}>
                   <Icon className="w-6 h-6 text-white" />
                 </div>
-                <div className="text-right">
-                  <div className="text-2xl font-bold text-white">{item.value}</div>
-                  <div className="text-sm text-neutral-500">Target: {item.target}</div>
+                     <div className="text-right">
+                      <div className="text-2xl font-bold text-brand-gold">{item.value}</div>
+                      <div className="text-sm text-brand-gray">Target: {item.target}</div>
                 </div>
               </div>
-              <div className="text-lg font-semibold text-white">{item.title}</div>
+                   <div className="text-lg font-semibold text-brand-gray">{item.title}</div>
             </motion.div>
           );
         })}
@@ -89,11 +89,11 @@ const BigFiveTimeline: React.FC<BigFiveTimelineProps> = ({ items, visibleCount }
                         <Icon className="w-6 h-6 text-white" />
                       </div>
                       <div className="text-right">
-                        <div className="text-2xl font-bold text-white">{item.value}</div>
-                        <div className="text-sm text-neutral-500">Target: {item.target}</div>
+                        <div className="text-2xl font-bold text-brand-gold">{item.value}</div>
+                        <div className="text-sm text-brand-gray">Target: {item.target}</div>
                       </div>
                     </div>
-                    <div className="text-lg font-semibold text-white">{item.title}</div>
+                    <div className="text-lg font-semibold text-brand-gray">{item.title}</div>
                   </motion.div>
                 ) : (
                   <div className="order-1 md:order-1" />
@@ -145,12 +145,12 @@ const BigFiveTimeline: React.FC<BigFiveTimelineProps> = ({ items, visibleCount }
                       <div className={`p-3 rounded-xl ${item.color}`}>
                         <Icon className="w-6 h-6 text-white" />
                       </div>
-                      <div className="text-right">
-                        <div className="text-2xl font-bold text-white">{item.value}</div>
-                        <div className="text-sm text-neutral-500">Target: {item.target}</div>
+                  <div className="text-right">
+                    <div className="text-2xl font-bold text-brand-gold">{item.value}</div>
+                    <div className="text-sm text-brand-gray">Target: {item.target}</div>
                       </div>
                     </div>
-                    <div className="text-lg font-semibold text-white">{item.title}</div>
+                <div className="text-lg font-semibold text-brand-gray">{item.title}</div>
                   </motion.div>
                 ) : (
                   <div className="order-3" />

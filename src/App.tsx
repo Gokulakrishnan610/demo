@@ -5,6 +5,7 @@ import 'aos/dist/aos.css';
 
 import AnimatedHeader from './components/AnimatedHeader';
 import SplashScreen from './components/SplashScreen';
+import SplitText from './components/SplitText';
 
 // import AnimatedMetricCard from './components/AnimatedMetricCard';
 import BigFiveTimeline from './components/BigFiveTimeline';
@@ -17,9 +18,7 @@ import {
   CreditCard, 
   Briefcase, 
   Users, 
-  TrendingUp,
-  Target,
-  BarChart3,
+  TrendingUp
 } from 'lucide-react';
 
 function App() {
@@ -28,10 +27,11 @@ function App() {
   const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
+    if (showSplash) return;
     AOS.init({
       duration: 1000,
       delay: 100,
-      easing: 'cubic-bezier(0.19, 1, 0.22, 1)', // smooth ease-out
+      easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
       offset: 60,
       anchorPlacement: 'top-bottom',
       once: true,
@@ -43,16 +43,21 @@ function App() {
     const handleResize = () => AOS.refresh();
     window.addEventListener('resize', handleResize);
     window.addEventListener('orientationchange', handleResize);
+
+    // ensure layout is measured after splash removal
+    const timer = window.setTimeout(() => AOS.refresh(), 50);
+
     return () => {
+      window.clearTimeout(timer);
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('orientationchange', handleResize);
     };
-  }, []);
+  }, [showSplash]);
 
   // Ensure AOS recalculates when content visibility changes
   useEffect(() => {
-    AOS.refresh();
-  }, [visibleCount]);
+    if (!showSplash) AOS.refresh();
+  }, [visibleCount, showSplash]);
 
   const big5Targets = [
     {
@@ -145,14 +150,14 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-neutral-100 relative overflow-hidden">
-      <SplashScreen show={showSplash} onFinish={() => setShowSplash(false)} />
+      <SplashScreen show={showSplash} durationMs={2500} onFinish={() => setShowSplash(false)} />
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Particles
-          particleColors={['#ffffff', '#aaaaaa']}
-          particleCount={220}
+          particleColors={['#ffffff', '#cfcfcf']}
+          particleCount={160}
           particleSpread={10}
-          speed={0.12}
-          particleBaseSize={120}
+          speed={0.08}
+          particleBaseSize={60}
           // hover disabled since pointer events are off to keep UI clickable
           moveParticlesOnHover={false}
           alphaParticles={false}
@@ -169,68 +174,70 @@ function App() {
         animate={showSplash ? 'hidden' : 'visible'}
         className="relative max-w-7xl mx-auto px-6 py-12 z-10"
       >
-        {/* Organization Overview */}
-          <motion.div 
+        {/* Overview: creative, non-boxy sequence */}
+        <motion.div 
+          variants={sectionVariants}
+          className="mb-6"
+          data-aos="fade-up"
+          data-aos-delay="150"
+          data-aos-duration="900"
+          data-aos-easing="cubic-bezier(0.19, 1, 0.22, 1)"
+        >
+          <div className="max-w-5xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 text-neutral-300/90 uppercase tracking-widest text-base md:text-lg">
+              <DollarSign className="w-5 h-5 md:w-6 md:h-6 text-emerald-300" />
+              <SplitText
+                text="Organisation Wide Case"
+                className="inline-block"
+                splitType="chars"
+                delay={40}
+                duration={0.5}
+                from={{ opacity: 0, y: 12 }}
+                to={{ opacity: 1, y: 0 }}
+                threshold={0.15}
+                rootMargin="-80px"
+                textAlign="center"
+              />
+            </div>
+            <div className="h-px w-28 md:w-36 mx-auto mt-3 bg-gradient-to-r from-transparent via-neutral-600 to-transparent" />
+          </div>
+        </motion.div>
+
+        <motion.div
           variants={sectionVariants}
           className="mb-16"
-            data-aos="fade-up"
-            data-aos-delay="150"
-            data-aos-duration="1000"
-            data-aos-easing="cubic-bezier(0.19, 1, 0.22, 1)"
+          data-aos="fade-up"
+          data-aos-delay="350"
+          data-aos-duration="1000"
+          data-aos-offset="200"
+          data-aos-easing="cubic-bezier(0.19, 1, 0.22, 1)"
         >
-          <div className="bg-neutral-900/70 rounded-3xl backdrop-blur-xl border border-neutral-800 p-8 shadow-2xl">
-            <div className="flex items-center justify-between mb-8">
-              <div>
-                <motion.h2 
-                  className="text-4xl font-bold mb-4 text-white"
-                  initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8 }}
-                >
-                  Organization Overview
-                </motion.h2>
-                <motion.p 
-                  className="text-neutral-400 text-xl"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  Strategic Business Performance Analytics
-                </motion.p>
-              </div>
-              <motion.div 
-                className="bg-neutral-900/70 p-6 rounded-2xl backdrop-blur-sm border border-neutral-800"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <Target className="w-12 h-12 text-neutral-300" />
-              </motion.div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                 {[
-                { icon: DollarSign, label: 'Organisation Wide Case', value: '₹500 Cr', desc: 'Plan & Estimation', color: 'text-emerald-300' },
-                { icon: TrendingUp, label: 'Growth Rate', value: '15.2%', desc: 'Year over Year', color: 'text-neutral-300' },
-                { icon: Users, label: 'Team Size', value: '20K+', desc: 'Human Capital', color: 'text-neutral-300' },
-                { icon: BarChart3, label: 'Target EBITDA', value: '50%', desc: 'Margin Goal', color: 'text-neutral-300' }
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  className="bg-neutral-900/70 rounded-2xl p-6 backdrop-blur-sm border border-neutral-800"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 + 0.5 }}
-                  whileHover={{ y: -5, scale: 1.02 }}
-                >
-                  <div className="flex items-center space-x-3 mb-3">
-                    <item.icon className={`w-6 h-6 ${item.color}`} />
-                    <span className="text-sm font-medium text-neutral-300">{item.label}</span>
-                  </div>
-                  <div className="text-3xl font-bold text-white mb-1">{item.value}</div>
-                  <div className="text-sm text-neutral-500">{item.desc}</div>
-                </motion.div>
-              ))}
-            </div>
+          <div className="max-w-5xl mx-auto text-center">
+            <SplitText
+              text="₹500 Cr"
+              className="block text-5xl md:text-6xl font-extrabold text-brand-gold drop-shadow-[0_6px_24px_rgba(244,160,25,0.15)]"
+              splitType="chars"
+              delay={50}
+              duration={0.6}
+              ease="power3.out"
+              from={{ opacity: 0, y: 24, scale: 0.98 }}
+              to={{ opacity: 1, y: 0, scale: 1 }}
+              threshold={0.2}
+              rootMargin="-120px"
+              textAlign="center"
+            />
+            <SplitText
+              text="Plan & Estimation"
+              className="block text-brand-gray mt-3 text-base md:text-lg"
+              splitType="words"
+              delay={60}
+              duration={0.5}
+              from={{ opacity: 0, y: 12 }}
+              to={{ opacity: 1, y: 0 }}
+              threshold={0.2}
+              rootMargin="-120px"
+              textAlign="center"
+            />
           </div>
         </motion.div>
 
@@ -245,7 +252,7 @@ function App() {
         >
           <div className="text-center mb-12">
             <motion.h2 
-              className="text-4xl font-bold text-white mb-6"
+              className="text-4xl font-bold text-brand-gold mb-6"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}

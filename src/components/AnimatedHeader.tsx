@@ -28,7 +28,7 @@ const AnimatedHeader: React.FC = () => {
       variants={headerVariants}
       initial="hidden"
       animate="visible"
-      className="relative bg-black text-white shadow-2xl overflow-hidden"
+      className="relative bg-black text-brand-gray shadow-2xl overflow-hidden"
     >
       {/* Animated background elements */}
       <div className="absolute inset-0">

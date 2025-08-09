@@ -3,10 +3,10 @@ import { Building2, TrendingUp, Users, DollarSign } from 'lucide-react';
 
 const OverviewCard: React.FC = () => {
   return (
-    <div className="bg-neutral-900/70 rounded-2xl shadow-2xl text-white p-8 mb-8 border border-neutral-800">
+    <div className="bg-neutral-900/70 rounded-2xl shadow-2xl text-brand-gray p-8 mb-8 border border-neutral-800">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h2 className="text-3xl font-bold mb-2">Organization Overview</h2>
+          <h2 className="text-3xl font-bold mb-2 text-brand-gold">Organization Overview</h2>
           <p className="text-neutral-400 text-lg">Strategic Business Performance</p>
         </div>
         <div className="bg-neutral-900/70 p-4 rounded-xl backdrop-blur-sm border border-neutral-800">
