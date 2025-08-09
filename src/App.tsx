@@ -172,79 +172,86 @@ function App() {
         variants={containerVariants}
         initial="hidden"
         animate={showSplash ? 'hidden' : 'visible'}
-        className="relative max-w-7xl mx-auto px-6 py-12 z-10"
+        className="relative max-w-7xl mx-auto px-6 py-4 z-10"
       >
-        {/* Overview: creative, non-boxy sequence */}
-        <motion.div 
-          variants={sectionVariants}
-          className="mb-6"
-          data-aos="fade-up"
-          data-aos-delay="150"
-          data-aos-duration="900"
-          data-aos-easing="cubic-bezier(0.19, 1, 0.22, 1)"
-        >
-          <div className="max-w-5xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 text-neutral-300/90 uppercase tracking-widest text-base md:text-lg">
-              <DollarSign className="w-5 h-5 md:w-6 md:h-6 text-emerald-300" />
-              <SplitText
-                text="Organisation Wide Case"
-                className="inline-block"
-                splitType="chars"
-                delay={40}
-                duration={0.5}
-                from={{ opacity: 0, y: 12 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.15}
-                rootMargin="-80px"
-                textAlign="center"
-              />
-            </div>
-            <div className="h-px w-28 md:w-36 mx-auto mt-3 bg-gradient-to-r from-transparent via-neutral-600 to-transparent" />
-          </div>
-        </motion.div>
+       {/* Organisation Wide Case */}
+<motion.div 
+  variants={sectionVariants}
+  className="mb-0" 
+  data-aos="fade-up"
+  data-aos-delay="150"
+  data-aos-duration="900"
+  data-aos-easing="cubic-bezier(0.19, 1, 0.22, 1)"
+>
+  <div className="max-w-5xl mx-auto text-center">
+    <div className="inline-flex items-center text-neutral-300/90 uppercase tracking-widest text-base md:text-lg">
+      <DollarSign className="w-5 h-5 md:w-6 md:h-6 text-emerald-300" />
+      <SplitText
+        text="Organisation Wide Case"
+        className="inline-block"
+        splitType="chars"
+        delay={40}
+        duration={0.5}
+        from={{ opacity: 0, y: 12 }}
+        to={{ opacity: 1, y: 0 }}
+        threshold={0.15}
+        rootMargin="-80px"
+        textAlign="center"
+      />
+    </div>
+    <div className="h-px w-24 md:w-32 mx-auto mt-1 bg-gradient-to-r from-transparent via-neutral-700 to-transparent" />
+  </div>
+</motion.div>
 
-        <motion.div
-          variants={sectionVariants}
-          className="mb-16"
-          data-aos="fade-up"
-          data-aos-delay="350"
-          data-aos-duration="1000"
-          data-aos-offset="200"
-          data-aos-easing="cubic-bezier(0.19, 1, 0.22, 1)"
-        >
-          <div className="max-w-5xl mx-auto text-center">
-            <SplitText
-              text="₹500 Cr"
-              className="block text-5xl md:text-6xl font-extrabold text-brand-gold drop-shadow-[0_6px_24px_rgba(244,160,25,0.15)]"
-              splitType="chars"
-              delay={50}
-              duration={0.6}
-              ease="power3.out"
-              from={{ opacity: 0, y: 24, scale: 0.98 }}
-              to={{ opacity: 1, y: 0, scale: 1 }}
-              threshold={0.2}
-              rootMargin="-120px"
-              textAlign="center"
-            />
-            <SplitText
-              text="Plan & Estimation"
-              className="block text-brand-gray mt-3 text-base md:text-lg"
-              splitType="words"
-              delay={60}
-              duration={0.5}
-              from={{ opacity: 0, y: 12 }}
-              to={{ opacity: 1, y: 0 }}
-              threshold={0.2}
-              rootMargin="-120px"
-              textAlign="center"
-            />
-          </div>
-        </motion.div>
+{/* ₹500 Cr and Plan & Estimation */}
+<motion.div
+  variants={sectionVariants}
+  className="mb-2" 
+  data-aos="fade-up"
+  data-aos-delay="350"
+  data-aos-duration="1000"
+  data-aos-offset="200"
+  data-aos-easing="cubic-bezier(0.19, 1, 0.22, 1)"
+>
+  <div className="max-w-5xl mx-auto text-center">
+    <div
+      className="relative mx-auto inline-flex items-center justify-center bg-center bg-no-repeat w-[380px] h-[380px] md:w-[540px] md:h-[540px]"
+      style={{ backgroundImage: "url('/%E2%82%B9500%20Cr.png')", backgroundSize: 'contain', filter: 'drop-shadow(0 10px 35px rgba(244,160,25,0.35))' }}
+    >
+      <SplitText
+        text="₹500 Cr"
+        className="block text-3xl md:text-5xl leading-none tracking-tight font-extrabold text-brand-dark"
+        splitType="chars"
+        delay={50}
+        duration={0.6}
+        ease="power3.out"
+        from={{ opacity: 0, y: 16, scale: 0.98 }}
+        to={{ opacity: 1, y: 0, scale: 1 }}
+        threshold={0.2}
+        rootMargin="-120px"
+        textAlign="center"
+      />
+    </div>
+    <SplitText
+      text="Plan & Estimation"
+      className="block text-brand-gray mt-2 text-lg md:text-xl" 
+      splitType="words"
+      delay={60}
+      duration={0.5}
+      from={{ opacity: 0, y: 12 }}
+      to={{ opacity: 1, y: 0 }}
+      threshold={0.2}
+      rootMargin="-120px"
+      textAlign="center"
+    />
+  </div>
+</motion.div>
+
 
         {/* Big 5 Strategic Targets */}
         <motion.div 
           variants={sectionVariants}
-          className="mb-16"
+          className="mb-20"
           data-aos="fade-up"
           data-aos-delay="300"
           data-aos-duration="1000"
