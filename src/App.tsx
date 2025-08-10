@@ -5,7 +5,7 @@ import 'aos/dist/aos.css';
 
 import AnimatedHeader from './components/AnimatedHeader';
 import SplashScreen from './components/SplashScreen';
-import SplitText from './components/SplitText';
+// import SplitText from './components/SplitText';
 
 // import AnimatedMetricCard from './components/AnimatedMetricCard';
 import BigFiveTimeline from './components/BigFiveTimeline';
@@ -174,7 +174,7 @@ function App() {
         className="relative max-w-7xl mx-auto px-6 py-4 z-10"
       >
        {/* Organisation Wide Case */}
-<motion.div 
+{/* <motion.div 
   variants={sectionVariants}
   className="mb-0" 
   data-aos="fade-up"
@@ -200,10 +200,10 @@ function App() {
     </div>
     <div className="h-px w-24 md:w-32 mx-auto mt-1 bg-gradient-to-r from-transparent via-neutral-700 to-transparent" />
   </div>
-</motion.div>
+</motion.div> */}
 
 {/* ₹500 Cr and Plan & Estimation */}
-<motion.div
+{/* <motion.div
   variants={sectionVariants}
   className="mb-2" 
   data-aos="fade-up"
@@ -244,7 +244,84 @@ function App() {
       textAlign="center"
     />
   </div>
-</motion.div>
+</motion.div> */}
+
+        {/* Main Content */}
+      <div className="relative z-10 px-8 py-16">
+        {/* Organization Wide Case Badge */}
+        <motion.div
+          className="text-center mb-20"
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, delay: 0.5, type: "spring" }}
+        >
+          <motion.p
+            className="text-gray-400 text-sm mb-12 tracking-[0.3em] font-light"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+          >
+            $ ORGANISATION WIDE CASE
+          </motion.p>
+
+          <motion.div
+            className="relative inline-block mb-8"
+            whileHover={{ scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 200 }}
+          >
+            <div className="relative w-64 h-64">
+              {/* Golden Badge Background */}
+              <motion.div
+                className="absolute inset-0"
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+              >
+                <img
+                  src="/₹500 Cr.png"
+                  alt="Golden Badge"
+                  width={600}
+                  height={600}
+                  className="filter drop-shadow-2xl w-full h-full object-contain"
+                />
+              </motion.div>
+
+              {/* Text Content - Counter-rotating to stay upright */}
+              <motion.div
+                className="absolute inset-0 flex items-center justify-center">
+                {/* animate={{ rotate: [0, -360] }}
+                transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }} */}
+              
+                <div className="text-center">
+                  <motion.div
+                    className="text-2xl font-bold text-black drop-shadow-sm"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 1.2, type: "spring" }}
+                  >
+                    <span>₹500 Cr</span>
+                  </motion.div>
+                </div>
+              </motion.div>
+
+              {/* Pulsing glow effect */}
+              <motion.div
+                className="absolute inset-0 bg-yellow-400 rounded-full opacity-20 blur-xl"
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+              />
+            </div>
+          </motion.div>
+
+          <motion.p
+            className="text-gray-300 text-xl font-light tracking-wide"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.4 }}
+          >
+            Plan & Estimation
+          </motion.p>
+        </motion.div>
+
 
 
         {/* Big 5 Strategic Targets */}
@@ -309,9 +386,7 @@ function App() {
               />
             ))}
           </div> */}
-
-      
-
+        </div>
       </motion.main>
       {!showSplash && <Footer />}
     </div>
