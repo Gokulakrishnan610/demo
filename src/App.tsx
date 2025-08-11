@@ -155,13 +155,13 @@ useEffect(() => {
       <SplashScreen show={showSplash} onFinish={() => setShowSplash(false)} />
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Particles
-          particleColors={['#F4A019', '#bbbbbb', '#888888']}
-          particleCount={160}
-          particleSpread={10}
+          particleColors={['#C2410C', '#D97706', '#B45309']}
+          particleCount={400}
+          particleSpread={20}
           speed={0.1}
           particleBaseSize={80}
           // hover disabled since pointer events are off to keep UI clickable
-          moveParticlesOnHover={false}
+          moveParticlesOnHover={true}
           alphaParticles={false}
           disableRotation={false}
           className="w-full h-full"
@@ -194,7 +194,26 @@ useEffect(() => {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8 }}
                 >
-                  Organization Overview
+                  <span className="inline-flex items-center gap-2">
+                    <span className="relative md:hidden inline-flex items-center justify-center w-12 h-12">
+                      <Target className="relative z-10 w-6 h-6 text-brand-gold" />
+                      <motion.span
+                        aria-hidden
+                        className="absolute inset-0 rounded-full ring-2 ring-brand-gold/60"
+                        initial={{ scale: 1, opacity: 0.6 }}
+                        animate={{ scale: [1, 1.25, 1], opacity: [0.6, 0, 0.6] }}
+                        transition={{ duration: 1.8, repeat: Infinity }}
+                      />
+                      <motion.span
+                        aria-hidden
+                        className="absolute inset-0 rounded-full bg-brand-gold/25 blur-md"
+                        initial={{ opacity: 0.4 }}
+                        animate={{ opacity: [0.4, 0.8, 0.4], scale: [1, 1.05, 1] }}
+                        transition={{ duration: 2.2, repeat: Infinity }}
+                      />
+                    </span>
+                    Organization Overview
+                  </span>
                 </motion.h2>
                 <motion.p 
                   className="text-brand-gray text-xl"
@@ -206,11 +225,20 @@ useEffect(() => {
                 </motion.p>
               </div>
               <motion.div 
-                className="bg-transparent p-6 rounded-2xl backdrop-blur-sm border border-neutral-200"
+                className="hidden md:flex bg-transparent p-6 rounded-2xl backdrop-blur-sm border border-neutral-200"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <Target className="w-12 h-12 text-brand-gold" />
+                <span className="relative inline-flex items-center justify-center w-16 h-16">
+                  <Target className="relative z-10 w-8 h-8 text-brand-gold" />
+                  <motion.span
+                    aria-hidden
+                    className="absolute inset-0 rounded-full bg-brand-gold/15 blur-md"
+                    initial={{ opacity: 0.4 }}
+                    animate={{ opacity: [0.4, 0.8, 0.4], scale: [1, 1.06, 1] }}
+                    transition={{ duration: 2.2, repeat: Infinity }}
+                  />
+                </span>
               </motion.div>
             </div>
             

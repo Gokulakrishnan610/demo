@@ -11,8 +11,16 @@ html, body, #root {
 .bg-hero {
   background-image: url('/back.jpg');
   background-repeat: no-repeat;
-  background-position: right bottom;
+  /* default (laptop/desktop) */
+  background-position: right 0 bottom 2rem;
   background-size: contain;
+}
+
+/* mobile overrides */
+@media (max-width: 767px) {
+  .bg-hero {
+    background-position: right 0 bottom 4rem;
+  }
 }
 
 canvas { display: block; }
