@@ -5,7 +5,14 @@
 /* Ensure the canvas background is visible behind content */
 html, body, #root {
   height: 100%;
-  background-color: #000;
+  background-color: #fff;
+}
+
+.bg-hero {
+  background-image: url('/back.jpg');
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: contain;
 }
 
 canvas { display: block; }

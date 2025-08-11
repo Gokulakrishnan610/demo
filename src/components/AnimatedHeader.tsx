@@ -28,7 +28,7 @@ const AnimatedHeader: React.FC = () => {
       variants={headerVariants}
       initial="hidden"
       animate="visible"
-      className="relative bg-black text-white shadow-2xl overflow-hidden"
+      className="relative bg-white text-brand-dark shadow-2xl overflow-hidden border-b border-brand-gold/20"
     >
       {/* Animated background elements */}
       <div className="absolute inset-0">
@@ -36,9 +36,9 @@ const AnimatedHeader: React.FC = () => {
           className="absolute top-0 left-0 w-full h-full"
           animate={{
             background: [
-              'radial-gradient(circle at 20% 50%, rgba(255,255,255,0.06) 0%, transparent 50%)',
-              'radial-gradient(circle at 80% 50%, rgba(255,255,255,0.04) 0%, transparent 50%)',
-              'radial-gradient(circle at 40% 50%, rgba(255,255,255,0.05) 0%, transparent 50%)',
+              'radial-gradient(circle at 20% 50%, rgba(0,0,0,0.06) 0%, transparent 50%)',
+              'radial-gradient(circle at 80% 50%, rgba(0,0,0,0.04) 0%, transparent 50%)',
+              'radial-gradient(circle at 40% 50%, rgba(0,0,0,0.05) 0%, transparent 50%)',
             ]
           }}
           transition={{ duration: 8, repeat: Infinity, repeatType: 'reverse' }}
@@ -48,7 +48,7 @@ const AnimatedHeader: React.FC = () => {
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-white/20 rounded-full"
+            className="absolute w-1 h-1 bg-black/10 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,

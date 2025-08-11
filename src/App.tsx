@@ -27,32 +27,39 @@ function App() {
   const [visibleCount, setVisibleCount] = useState(0);
   const [showSplash, setShowSplash] = useState(true);
 
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      delay: 100,
-      easing: 'cubic-bezier(0.19, 1, 0.22, 1)', // smooth ease-out
-      offset: 60,
-      anchorPlacement: 'top-bottom',
-      once: true,
-      mirror: false,
-      throttleDelay: 50,
-      debounceDelay: 50,
-    });
+useEffect(() => {
+  if (showSplash) return;
 
-    const handleResize = () => AOS.refresh();
-    window.addEventListener('resize', handleResize);
-    window.addEventListener('orientationchange', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      window.removeEventListener('orientationchange', handleResize);
-    };
-  }, []);
+  AOS.init({
+    duration: 1000,
+    delay: 100,
+    easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+    offset: 60,
+    anchorPlacement: 'top-bottom',
+    once: true,
+    mirror: false,
+    throttleDelay: 50,
+    debounceDelay: 50,
+  });
+
+  const handleResize = () => AOS.refresh();
+  window.addEventListener('resize', handleResize);
+  window.addEventListener('orientationchange', handleResize);
+
+  // ensure first calculation after splash removal
+  const rafId = window.requestAnimationFrame(() => AOS.refresh());
+
+  return () => {
+    window.cancelAnimationFrame(rafId);
+    window.removeEventListener('resize', handleResize);
+    window.removeEventListener('orientationchange', handleResize);
+  };
+}, [showSplash]);
 
   // Ensure AOS recalculates when content visibility changes
-  useEffect(() => {
-    AOS.refresh();
-  }, [visibleCount]);
+useEffect(() => {
+  if (!showSplash) AOS.refresh();
+}, [visibleCount, showSplash]);
 
   const big5Targets = [
     {
@@ -144,15 +151,15 @@ function App() {
   }, [big5Targets.length]);
 
   return (
-    <div className="min-h-screen bg-black text-neutral-100 relative overflow-hidden">
+    <div className="min-h-screen bg-white text-brand-dark relative overflow-hidden bg-hero">
       <SplashScreen show={showSplash} onFinish={() => setShowSplash(false)} />
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Particles
-          particleColors={['#ffffff', '#aaaaaa']}
-          particleCount={220}
+          particleColors={['#F4A019', '#bbbbbb', '#888888']}
+          particleCount={160}
           particleSpread={10}
-          speed={0.12}
-          particleBaseSize={120}
+          speed={0.1}
+          particleBaseSize={80}
           // hover disabled since pointer events are off to keep UI clickable
           moveParticlesOnHover={false}
           alphaParticles={false}
@@ -178,11 +185,11 @@ function App() {
             data-aos-duration="1000"
             data-aos-easing="cubic-bezier(0.19, 1, 0.22, 1)"
         >
-          <div className="bg-neutral-900/70 rounded-3xl backdrop-blur-xl border border-neutral-800 p-8 shadow-2xl">
+          <div className="bg-white rounded-3xl backdrop-blur-xl border border-neutral-200 p-8 shadow-xl">
             <div className="flex items-center justify-between mb-8">
               <div>
                 <motion.h2 
-                  className="text-4xl font-bold mb-4 text-white"
+                  className="text-4xl font-bold mb-4 text-brand-gold"
                   initial={{ opacity: 0, x: -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8 }}
@@ -190,7 +197,7 @@ function App() {
                   Organization Overview
                 </motion.h2>
                 <motion.p 
-                  className="text-neutral-400 text-xl"
+                  className="text-brand-gray text-xl"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
@@ -199,24 +206,24 @@ function App() {
                 </motion.p>
               </div>
               <motion.div 
-                className="bg-neutral-900/70 p-6 rounded-2xl backdrop-blur-sm border border-neutral-800"
+                className="bg-white p-6 rounded-2xl backdrop-blur-sm border border-neutral-200"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <Target className="w-12 h-12 text-neutral-300" />
+                <Target className="w-12 h-12 text-brand-gold" />
               </motion.div>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                  {[
-                { icon: DollarSign, label: 'Organisation Wide Case', value: '₹500 Cr', desc: 'Plan & Estimation', color: 'text-emerald-300' },
-                { icon: TrendingUp, label: 'Growth Rate', value: '15.2%', desc: 'Year over Year', color: 'text-neutral-300' },
-                { icon: Users, label: 'Team Size', value: '20K+', desc: 'Human Capital', color: 'text-neutral-300' },
-                { icon: BarChart3, label: 'Target EBITDA', value: '50%', desc: 'Margin Goal', color: 'text-neutral-300' }
+                { icon: DollarSign, label: 'Organisation Wide Case', value: '₹500 Cr', desc: 'Plan & Estimation', color: 'text-brand-gray' },
+                { icon: TrendingUp, label: 'Growth Rate', value: '15.2%', desc: 'Year over Year', color: 'text-brand-gray' },
+                { icon: Users, label: 'Team Size', value: '20K+', desc: 'Human Capital', color: 'text-brand-gray' },
+                { icon: BarChart3, label: 'Target EBITDA', value: '50%', desc: 'Margin Goal', color: 'text-brand-gray' }
               ].map((item, index) => (
                 <motion.div
                   key={index}
-                  className="bg-neutral-900/70 rounded-2xl p-6 backdrop-blur-sm border border-neutral-800"
+                  className="bg-white rounded-2xl p-6 backdrop-blur-sm border border-neutral-200"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 + 0.5 }}
@@ -224,10 +231,10 @@ function App() {
                 >
                   <div className="flex items-center space-x-3 mb-3">
                     <item.icon className={`w-6 h-6 ${item.color}`} />
-                    <span className="text-sm font-medium text-neutral-300">{item.label}</span>
+                    <span className="text-sm font-medium text-brand-gray">{item.label}</span>
                   </div>
-                  <div className="text-3xl font-bold text-white mb-1">{item.value}</div>
-                  <div className="text-sm text-neutral-500">{item.desc}</div>
+                  <div className="text-3xl font-bold text-brand-gold mb-1">{item.value}</div>
+                  <div className="text-sm text-brand-gray">{item.desc}</div>
                 </motion.div>
               ))}
             </div>
@@ -245,17 +252,15 @@ function App() {
         >
           <div className="text-center mb-12">
             <motion.h2 
-              className="text-4xl font-bold text-white mb-6"
+              className="text-4xl font-bold text-brand-gold mb-6"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <span className="bg-gradient-to-r from-neutral-200 via-neutral-300 to-neutral-200 bg-clip-text text-transparent">
-                Big 5 Strategic Targets
-              </span>
+              <span className="text-brand-gold">Big 5 Strategic Targets</span>
             </motion.h2>
             <motion.p 
-              className="text-neutral-400 text-xl max-w-3xl mx-auto"
+              className="text-brand-gray text-xl max-w-3xl mx-auto"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.3 }}

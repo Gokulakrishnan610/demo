@@ -41,7 +41,7 @@ const BigFiveTimeline: React.FC<BigFiveTimelineProps> = ({ items, visibleCount }
           return (
             <motion.div
               key={`${item.title}-m-${index}`}
-              className="bg-neutral-900/70 border border-neutral-800 rounded-2xl p-6 shadow-2xl"
+              className="bg-white border border-neutral-200 rounded-2xl p-6 shadow-lg"
               variants={cardVariants}
               initial={index % 2 === 0 ? 'hiddenLeft' : 'hiddenRight'}
               whileInView="visible"
@@ -52,11 +52,11 @@ const BigFiveTimeline: React.FC<BigFiveTimelineProps> = ({ items, visibleCount }
                   <Icon className="w-6 h-6 text-white" />
                 </div>
                 <div className="text-right">
-                  <div className="text-2xl font-bold text-white">{item.value}</div>
-                  <div className="text-sm text-neutral-500">Target: {item.target}</div>
+                  <div className="text-2xl font-bold text-brand-gold">{item.value}</div>
+                  <div className="text-sm text-brand-gray">Target: {item.target}</div>
                 </div>
               </div>
-              <div className="text-lg font-semibold text-white">{item.title}</div>
+              <div className="text-lg font-semibold text-brand-dark">{item.title}</div>
             </motion.div>
           );
         })}
@@ -65,7 +65,7 @@ const BigFiveTimeline: React.FC<BigFiveTimelineProps> = ({ items, visibleCount }
       {/* Desktop/Tablet: alternating timeline */}
       <div className="hidden md:block relative">
         {/* vertical line */}
-        <div className="absolute left-1/2 top-0 -translate-x-1/2 w-1 bg-neutral-800 rounded-full h-full" />
+        <div className="absolute left-1/2 top-0 -translate-x-1/2 w-1 bg-brand-gold/30 rounded-full h-full" />
 
         <div className="space-y-10">
           {items.slice(0, visibleCount).map((item, index) => {
@@ -82,18 +82,18 @@ const BigFiveTimeline: React.FC<BigFiveTimelineProps> = ({ items, visibleCount }
                     initial="hiddenLeft"
                     whileInView="visible"
                     viewport={{ once: true, margin: '-50px' }}
-                    className="order-1 md:order-1 bg-neutral-900/70 border border-neutral-800 rounded-2xl p-6 shadow-2xl"
+                     className="order-1 md:order-1 bg-white border border-neutral-200 rounded-2xl p-6 shadow-lg"
                   >
                     <div className="flex items-center justify-between mb-3">
                       <div className={`p-3 rounded-xl ${item.color}`}>
                         <Icon className="w-6 h-6 text-white" />
                       </div>
                       <div className="text-right">
-                        <div className="text-2xl font-bold text-white">{item.value}</div>
-                        <div className="text-sm text-neutral-500">Target: {item.target}</div>
+                        <div className="text-2xl font-bold text-brand-gold">{item.value}</div>
+                        <div className="text-sm text-brand-gray">Target: {item.target}</div>
                       </div>
                     </div>
-                    <div className="text-lg font-semibold text-white">{item.title}</div>
+                    <div className="text-lg font-semibold text-brand-dark">{item.title}</div>
                   </motion.div>
                 ) : (
                   <div className="order-1 md:order-1" />
@@ -123,7 +123,7 @@ const BigFiveTimeline: React.FC<BigFiveTimelineProps> = ({ items, visibleCount }
                         height: '16px',
                         border: `2px solid ${hex}`,
                         backgroundColor: isActive ? hex : 'transparent',
-                        boxShadow: '0 0 0 4px rgba(0,0,0,1)'
+                        boxShadow: '0 0 0 4px rgba(244,160,25,0.15)'
                       }}
                       initial={{ scale: 0.7 }}
                       animate={{ scale: 1 }}
@@ -139,18 +139,18 @@ const BigFiveTimeline: React.FC<BigFiveTimelineProps> = ({ items, visibleCount }
                     initial="hiddenRight"
                     whileInView="visible"
                     viewport={{ once: true, margin: '-50px' }}
-                    className="order-3 bg-neutral-900/70 border border-neutral-800 rounded-2xl p-6 shadow-2xl"
+                    className="order-3 bg-white border border-neutral-200 rounded-2xl p-6 shadow-lg"
                   >
                     <div className="flex items-center justify-between mb-3">
                       <div className={`p-3 rounded-xl ${item.color}`}>
                         <Icon className="w-6 h-6 text-white" />
                       </div>
                       <div className="text-right">
-                        <div className="text-2xl font-bold text-white">{item.value}</div>
-                        <div className="text-sm text-neutral-500">Target: {item.target}</div>
+                        <div className="text-2xl font-bold text-brand-gold">{item.value}</div>
+                        <div className="text-sm text-brand-gray">Target: {item.target}</div>
                       </div>
                     </div>
-                    <div className="text-lg font-semibold text-white">{item.title}</div>
+                    <div className="text-lg font-semibold text-brand-dark">{item.title}</div>
                   </motion.div>
                 ) : (
                   <div className="order-3" />
