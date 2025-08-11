@@ -41,7 +41,7 @@ const BigFiveTimeline: React.FC<BigFiveTimelineProps> = ({ items, visibleCount }
           return (
             <motion.div
               key={`${item.title}-m-${index}`}
-              className="relative bg-white border border-neutral-200 rounded-2xl p-6 shadow-lg overflow-hidden"
+              className="group relative bg-white border border-neutral-200 rounded-2xl p-6 shadow-lg overflow-hidden"
               variants={cardVariants}
               initial={index % 2 === 0 ? 'hiddenLeft' : 'hiddenRight'}
               whileInView="visible"
@@ -49,6 +49,12 @@ const BigFiveTimeline: React.FC<BigFiveTimelineProps> = ({ items, visibleCount }
               transition={{ duration: 0.7, delay: index * 0.12 }}
               whileHover={{ y: -6, scale: 1.02 }}
             >
+              {/* shine sweep */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 transition duration-700 ease-out group-hover:translate-x-[220%] group-hover:opacity-100"
+                style={{ transform: 'skewX(-20deg)' }}
+              />
               {/* shimmering top accent */}
               <motion.span
                 aria-hidden
@@ -56,25 +62,22 @@ const BigFiveTimeline: React.FC<BigFiveTimelineProps> = ({ items, visibleCount }
                 animate={{ opacity: [0.4, 1, 0.4] }}
                 transition={{ duration: 2.4, repeat: Infinity }}
               />
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center justify-between min-h-[64px]">
                 <div className={`p-3 rounded-xl ${item.color}`}>
                   <motion.div
                     animate={{ y: [0, -2, 0] }}
                     transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
                   >
-                    <Icon className="w-6 h-6 text-white" />
+                    <Icon className="w-6 h-6 text-white drop-shadow-[0_2px_10px_rgba(244,160,25,0.4)]" />
                   </motion.div>
                 </div>
                 <div className="text-right">
-                  <motion.div className="text-2xl font-bold text-brand-gold" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
+                  <motion.div className="text-2xl font-bold gold-glint transition group-hover:scale-[1.02]" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
                     {item.value}
-                  </motion.div>
-                  <motion.div className="text-sm text-brand-gray" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}>
-                    Target: {item.target}
                   </motion.div>
                 </div>
               </div>
-              <motion.div className="text-lg font-semibold text-brand-dark" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}>
+              <motion.div className="mt-2 text-lg font-semibold text-brand-dark" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}>
                 {item.title}
               </motion.div>
             </motion.div>
@@ -102,35 +105,37 @@ const BigFiveTimeline: React.FC<BigFiveTimelineProps> = ({ items, visibleCount }
                     initial="hiddenLeft"
                     whileInView="visible"
                     viewport={{ once: true, margin: '-50px' }}
-                     className="relative order-1 md:order-1 bg-white border border-neutral-200 rounded-2xl p-6 shadow-lg overflow-hidden"
+                     className="group relative order-1 md:order-1 bg-white border border-neutral-200 rounded-2xl p-6 shadow-lg overflow-hidden"
                     transition={{ duration: 0.7, delay: index * 0.12 }}
                     whileHover={{ y: -6, scale: 1.02 }}
                   >
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 transition duration-700 ease-out group-hover:translate-x-[220%] group-hover:opacity-100"
+                      style={{ transform: 'skewX(-20deg)' }}
+                    />
                     <motion.span
                       aria-hidden
                       className="pointer-events-none absolute top-0 left-0 h-[2px] w-full bg-gradient-to-r from-transparent via-brand-gold to-transparent"
                       animate={{ opacity: [0.4, 1, 0.4] }}
                       transition={{ duration: 2.4, repeat: Infinity }}
                     />
-                    <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center justify-between min-h-[64px]">
                       <div className={`p-3 rounded-xl ${item.color}`}>
                         <motion.div
                           animate={{ y: [0, -2, 0] }}
                           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
                         >
-                          <Icon className="w-6 h-6 text-white" />
+                          <Icon className="w-6 h-6 text-white drop-shadow-[0_2px_10px_rgba(244,160,25,0.4)]" />
                         </motion.div>
                       </div>
                       <div className="text-right">
-                        <motion.div className="text-2xl font-bold text-brand-gold" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
+                        <motion.div className="text-2xl font-bold gold-glint" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
                           {item.value}
-                        </motion.div>
-                        <motion.div className="text-sm text-brand-gray" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}>
-                          Target: {item.target}
                         </motion.div>
                       </div>
                     </div>
-                    <motion.div className="text-lg font-semibold text-brand-dark" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}>
+                    <motion.div className="mt-2 text-lg font-semibold text-brand-dark" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}>
                       {item.title}
                     </motion.div>
                   </motion.div>
@@ -151,12 +156,12 @@ const BigFiveTimeline: React.FC<BigFiveTimelineProps> = ({ items, visibleCount }
                           borderRadius: '9999px'
                         }}
                         initial={{ opacity: 0.6, scale: 0.8 }}
-                        animate={{ opacity: 0, scale: 1.8 }}
+                        animate={{ opacity: 0, scale: 2.2 }}
                         transition={{ duration: 0.8 }}
                       />
                     )}
                     <motion.span
-                      className="rounded-full"
+                      className="rounded-full shadow-[0_0_14px_rgba(244,160,25,0.35)]"
                       style={{
                         width: '16px',
                         height: '16px',
@@ -165,8 +170,8 @@ const BigFiveTimeline: React.FC<BigFiveTimelineProps> = ({ items, visibleCount }
                         boxShadow: '0 0 0 4px rgba(244,160,25,0.15)'
                       }}
                       initial={{ scale: 0.7 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.3 }}
+                      animate={{ scale: [1, 1.08, 1] }}
+                      transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
                     />
                   </div>
                 </div>
@@ -178,35 +183,37 @@ const BigFiveTimeline: React.FC<BigFiveTimelineProps> = ({ items, visibleCount }
                     initial="hiddenRight"
                     whileInView="visible"
                     viewport={{ once: true, margin: '-50px' }}
-                    className="relative order-3 bg-white border border-neutral-200 rounded-2xl p-6 shadow-lg overflow-hidden"
+                    className="group relative order-3 bg-white border border-neutral-200 rounded-2xl p-6 shadow-lg overflow-hidden"
                     transition={{ duration: 0.7, delay: index * 0.12 }}
                     whileHover={{ y: -6, scale: 1.02 }}
                   >
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 transition duration-700 ease-out group-hover:translate-x-[220%] group-hover:opacity-100"
+                      style={{ transform: 'skewX(-20deg)' }}
+                    />
                     <motion.span
                       aria-hidden
                       className="pointer-events-none absolute top-0 left-0 h-[2px] w-full bg-gradient-to-r from-transparent via-brand-gold to-transparent"
                       animate={{ opacity: [0.4, 1, 0.4] }}
                       transition={{ duration: 2.4, repeat: Infinity }}
                     />
-                    <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center justify-between min-h-[64px]">
                       <div className={`p-3 rounded-xl ${item.color}`}>
                         <motion.div
                           animate={{ y: [0, -2, 0] }}
                           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
                         >
-                          <Icon className="w-6 h-6 text-white" />
+                          <Icon className="w-6 h-6 text-white drop-shadow-[0_2px_10px_rgba(244,160,25,0.4)]" />
                         </motion.div>
                       </div>
                       <div className="text-right">
-                        <motion.div className="text-2xl font-bold text-brand-gold" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
+                        <motion.div className="text-2xl font-bold gold-glint" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
                           {item.value}
-                        </motion.div>
-                        <motion.div className="text-sm text-brand-gray" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}>
-                          Target: {item.target}
                         </motion.div>
                       </div>
                     </div>
-                    <motion.div className="text-lg font-semibold text-brand-dark" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}>
+                    <motion.div className="mt-2 text-lg font-semibold text-brand-dark" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}>
                       {item.title}
                     </motion.div>
                   </motion.div>
