@@ -194,26 +194,7 @@ useEffect(() => {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8 }}
                 >
-                  <span className="inline-flex items-center gap-2">
-                    <span className="relative md:hidden inline-flex items-center justify-center w-12 h-12">
-                      <Target className="relative z-10 w-6 h-6 text-brand-gold" />
-                      <motion.span
-                        aria-hidden
-                        className="absolute inset-0 rounded-full ring-2 ring-brand-gold/60"
-                        initial={{ scale: 1, opacity: 0.6 }}
-                        animate={{ scale: [1, 1.25, 1], opacity: [0.6, 0, 0.6] }}
-                        transition={{ duration: 1.8, repeat: Infinity }}
-                      />
-                      <motion.span
-                        aria-hidden
-                        className="absolute inset-0 rounded-full bg-brand-gold/25 blur-md"
-                        initial={{ opacity: 0.4 }}
-                        animate={{ opacity: [0.4, 0.8, 0.4], scale: [1, 1.05, 1] }}
-                        transition={{ duration: 2.2, repeat: Infinity }}
-                      />
-                    </span>
-                    Organization Overview
-                  </span>
+                  <span className="inline-flex items-center gap-2">Organization Overview</span>
                 </motion.h2>
                 <motion.p 
                   className="text-brand-gray text-xl"

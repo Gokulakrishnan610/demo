@@ -67,7 +67,7 @@ const AnimatedHeader: React.FC = () => {
         ))}
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 py-12 z-10">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6 z-10">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-6">
             <motion.img
@@ -75,7 +75,7 @@ const AnimatedHeader: React.FC = () => {
               loading="eager"
               src="/image.png"
               alt="Casa Grande PropCare"
-              className="h-14 md:h-16 w-auto select-none"
+              className="h-10 sm:h-12 md:h-14 w-auto select-none"
               draggable={false}
             />
           </div>
