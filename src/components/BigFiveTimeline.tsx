@@ -18,7 +18,7 @@ interface BigFiveTimelineProps {
 const cardVariants = {
   hiddenLeft: { opacity: 0, x: -60 },
   hiddenRight: { opacity: 0, x: 60 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.6 } }
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7 } }
 };
 
 const colorHexFromClass = (colorClass: string): string => {
@@ -41,22 +41,42 @@ const BigFiveTimeline: React.FC<BigFiveTimelineProps> = ({ items, visibleCount }
           return (
             <motion.div
               key={`${item.title}-m-${index}`}
-              className="bg-white border border-neutral-200 rounded-2xl p-6 shadow-lg"
+              className="relative bg-white border border-neutral-200 rounded-2xl p-6 shadow-lg overflow-hidden"
               variants={cardVariants}
               initial={index % 2 === 0 ? 'hiddenLeft' : 'hiddenRight'}
               whileInView="visible"
               viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.7, delay: index * 0.12 }}
+              whileHover={{ y: -6, scale: 1.02 }}
             >
+              {/* shimmering top accent */}
+              <motion.span
+                aria-hidden
+                className="pointer-events-none absolute top-0 left-0 h-[2px] w-full bg-gradient-to-r from-transparent via-brand-gold to-transparent"
+                animate={{ opacity: [0.4, 1, 0.4] }}
+                transition={{ duration: 2.4, repeat: Infinity }}
+              />
               <div className="flex items-center justify-between mb-3">
                 <div className={`p-3 rounded-xl ${item.color}`}>
-                  <Icon className="w-6 h-6 text-white" />
+                  <motion.div
+                    animate={{ y: [0, -2, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                    <Icon className="w-6 h-6 text-white" />
+                  </motion.div>
                 </div>
                 <div className="text-right">
-                  <div className="text-2xl font-bold text-brand-gold">{item.value}</div>
-                  <div className="text-sm text-brand-gray">Target: {item.target}</div>
+                  <motion.div className="text-2xl font-bold text-brand-gold" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
+                    {item.value}
+                  </motion.div>
+                  <motion.div className="text-sm text-brand-gray" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}>
+                    Target: {item.target}
+                  </motion.div>
                 </div>
               </div>
-              <div className="text-lg font-semibold text-brand-dark">{item.title}</div>
+              <motion.div className="text-lg font-semibold text-brand-dark" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}>
+                {item.title}
+              </motion.div>
             </motion.div>
           );
         })}
@@ -82,18 +102,37 @@ const BigFiveTimeline: React.FC<BigFiveTimelineProps> = ({ items, visibleCount }
                     initial="hiddenLeft"
                     whileInView="visible"
                     viewport={{ once: true, margin: '-50px' }}
-                     className="order-1 md:order-1 bg-white border border-neutral-200 rounded-2xl p-6 shadow-lg"
+                     className="relative order-1 md:order-1 bg-white border border-neutral-200 rounded-2xl p-6 shadow-lg overflow-hidden"
+                    transition={{ duration: 0.7, delay: index * 0.12 }}
+                    whileHover={{ y: -6, scale: 1.02 }}
                   >
+                    <motion.span
+                      aria-hidden
+                      className="pointer-events-none absolute top-0 left-0 h-[2px] w-full bg-gradient-to-r from-transparent via-brand-gold to-transparent"
+                      animate={{ opacity: [0.4, 1, 0.4] }}
+                      transition={{ duration: 2.4, repeat: Infinity }}
+                    />
                     <div className="flex items-center justify-between mb-3">
                       <div className={`p-3 rounded-xl ${item.color}`}>
-                        <Icon className="w-6 h-6 text-white" />
+                        <motion.div
+                          animate={{ y: [0, -2, 0] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                        >
+                          <Icon className="w-6 h-6 text-white" />
+                        </motion.div>
                       </div>
                       <div className="text-right">
-                        <div className="text-2xl font-bold text-brand-gold">{item.value}</div>
-                        <div className="text-sm text-brand-gray">Target: {item.target}</div>
+                        <motion.div className="text-2xl font-bold text-brand-gold" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
+                          {item.value}
+                        </motion.div>
+                        <motion.div className="text-sm text-brand-gray" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}>
+                          Target: {item.target}
+                        </motion.div>
                       </div>
                     </div>
-                    <div className="text-lg font-semibold text-brand-dark">{item.title}</div>
+                    <motion.div className="text-lg font-semibold text-brand-dark" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}>
+                      {item.title}
+                    </motion.div>
                   </motion.div>
                 ) : (
                   <div className="order-1 md:order-1" />
@@ -139,18 +178,37 @@ const BigFiveTimeline: React.FC<BigFiveTimelineProps> = ({ items, visibleCount }
                     initial="hiddenRight"
                     whileInView="visible"
                     viewport={{ once: true, margin: '-50px' }}
-                    className="order-3 bg-white border border-neutral-200 rounded-2xl p-6 shadow-lg"
+                    className="relative order-3 bg-white border border-neutral-200 rounded-2xl p-6 shadow-lg overflow-hidden"
+                    transition={{ duration: 0.7, delay: index * 0.12 }}
+                    whileHover={{ y: -6, scale: 1.02 }}
                   >
+                    <motion.span
+                      aria-hidden
+                      className="pointer-events-none absolute top-0 left-0 h-[2px] w-full bg-gradient-to-r from-transparent via-brand-gold to-transparent"
+                      animate={{ opacity: [0.4, 1, 0.4] }}
+                      transition={{ duration: 2.4, repeat: Infinity }}
+                    />
                     <div className="flex items-center justify-between mb-3">
                       <div className={`p-3 rounded-xl ${item.color}`}>
-                        <Icon className="w-6 h-6 text-white" />
+                        <motion.div
+                          animate={{ y: [0, -2, 0] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                        >
+                          <Icon className="w-6 h-6 text-white" />
+                        </motion.div>
                       </div>
                       <div className="text-right">
-                        <div className="text-2xl font-bold text-brand-gold">{item.value}</div>
-                        <div className="text-sm text-brand-gray">Target: {item.target}</div>
+                        <motion.div className="text-2xl font-bold text-brand-gold" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
+                          {item.value}
+                        </motion.div>
+                        <motion.div className="text-sm text-brand-gray" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}>
+                          Target: {item.target}
+                        </motion.div>
                       </div>
                     </div>
-                    <div className="text-lg font-semibold text-brand-dark">{item.title}</div>
+                    <motion.div className="text-lg font-semibold text-brand-dark" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}>
+                      {item.title}
+                    </motion.div>
                   </motion.div>
                 ) : (
                   <div className="order-3" />

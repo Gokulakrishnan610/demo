@@ -31,10 +31,10 @@ useEffect(() => {
   if (showSplash) return;
 
   AOS.init({
-    duration: 1000,
-    delay: 100,
-    easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
-    offset: 60,
+    duration: 900,
+    delay: 120,
+    easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+    offset: 90,
     anchorPlacement: 'top-bottom',
     once: true,
     mirror: false,
@@ -132,7 +132,7 @@ useEffect(() => {
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { duration: 0.8 }
+    transition: { duration: 0.9 }
     }
   };
 
@@ -146,7 +146,7 @@ useEffect(() => {
         }
         return prev + 1;
       });
-    }, 800);
+    }, 700);
     return () => clearInterval(intervalId);
   }, [big5Targets.length]);
 
@@ -181,11 +181,11 @@ useEffect(() => {
           variants={sectionVariants}
           className="mb-16"
             data-aos="fade-up"
-            data-aos-delay="150"
-            data-aos-duration="1000"
-            data-aos-easing="cubic-bezier(0.19, 1, 0.22, 1)"
+            data-aos-delay="180"
+            data-aos-duration="900"
+            data-aos-easing="cubic-bezier(0.22, 1, 0.36, 1)"
         >
-          <div className="bg-white rounded-3xl backdrop-blur-xl border border-neutral-200 p-8 shadow-xl">
+          <div className="bg-transparent rounded-3xl backdrop-blur-xl border border-neutral-200 p-8 shadow-xl">
             <div className="flex items-center justify-between mb-8">
               <div>
                 <motion.h2 
@@ -206,7 +206,7 @@ useEffect(() => {
                 </motion.p>
               </div>
               <motion.div 
-                className="bg-white p-6 rounded-2xl backdrop-blur-sm border border-neutral-200"
+                className="bg-transparent p-6 rounded-2xl backdrop-blur-sm border border-neutral-200"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
@@ -246,24 +246,54 @@ useEffect(() => {
           variants={sectionVariants}
           className="mb-16"
           data-aos="fade-up"
-          data-aos-delay="300"
-          data-aos-duration="1000"
-          data-aos-easing="cubic-bezier(0.19, 1, 0.22, 1)"
+          data-aos-delay="220"
+          data-aos-duration="900"
+          data-aos-easing="cubic-bezier(0.22, 1, 0.36, 1)"
         >
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 relative">
+            {/* Floating decorative orbs behind heading */}
+            <motion.span
+              aria-hidden
+              className="absolute -top-6 left-1/3 block h-3 w-3 rounded-full bg-brand-gold/70 blur-[1px]"
+              animate={{ y: [0, -8, 0], opacity: [0.8, 1, 0.8] }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            />
+            <motion.span
+              aria-hidden
+              className="absolute -top-3 right-1/4 block h-2.5 w-2.5 rounded-full bg-brand-gold/60"
+              animate={{ y: [0, -10, 0], opacity: [0.7, 1, 0.7] }}
+              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 0.6 }}
+            />
+            
             <motion.h2 
-              className="text-4xl font-bold text-brand-gold mb-6"
+              className="text-4xl font-bold text-brand-gold mb-3 relative inline-block"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <span className="text-brand-gold">Big 5 Strategic Targets</span>
+              <motion.span
+                className="bg-gradient-to-r from-brand-gold via-[#ffc861] to-brand-gold bg-clip-text text-transparent"
+                animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
+                transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+                style={{ backgroundSize: '200% 200%' }}
+              >
+                Big 5 Strategic Targets
+              </motion.span>
+              {/* Animated underline */}
+              <motion.span
+                aria-hidden
+                className="absolute -bottom-2 left-0 right-0 mx-auto h-[3px] w-40 bg-gradient-to-r from-transparent via-brand-gold to-transparent rounded-full"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 0.9, ease: 'easeOut' }}
+                style={{ transformOrigin: 'center' }}
+              />
             </motion.h2>
             <motion.p 
               className="text-brand-gray text-xl max-w-3xl mx-auto"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.7 }}
             >
               Key performance indicators driving organizational success and sustainable growth
             </motion.p>
@@ -272,7 +302,13 @@ useEffect(() => {
         
 
           {/* Timeline version for mid/large screens */}
-          <div className="block mb-12">
+          <motion.div 
+            className="block mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            viewport={{ once: true, margin: '-80px' }}
+          >
             <BigFiveTimeline
               items={big5Targets.map(t => ({
                 title: t.title,
@@ -283,7 +319,7 @@ useEffect(() => {
               }))}
               visibleCount={visibleCount}
             />
-          </div>
+          </motion.div>
         </motion.div>
 
          {/* <div className="hidden xl:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-12">
